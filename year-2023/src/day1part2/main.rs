@@ -1,5 +1,3 @@
-use std::path::PathBuf;
-
 fn match_val(line: &str, i: usize, target: &str, val: u32) -> Option<u32> {
     if line[i..].starts_with(target) {
         Some(val)
@@ -54,13 +52,13 @@ fn get_calibration_value(line: String) -> u32 {
 }
 
 fn main() {
-    use year_2023::day1part1::read_lines;
+    use year_2023::execution::line_run;
 
-    let mut sum = 0_u32;
-    for line in read_lines(PathBuf::from("./src/day1part1/data.txt")) {
-        let line = line.unwrap();
-        sum += get_calibration_value(line);
-    }
+    let sum = line_run("./src/day1part1/data.txt", |line| {
+        get_calibration_value(line)
+    })
+    .iter()
+    .sum::<u32>();
 
     println!("sum: {sum}")
 }
