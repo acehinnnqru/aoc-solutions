@@ -1,0 +1,7 @@
+set positional-arguments
+
+@r day part:
+    cargo run --bin day$1part$2
+
+@t day part:
+    cargo test --package year-2023 --bin day$1part$2 -- tests::day$1part$2 --exact --nocapture
