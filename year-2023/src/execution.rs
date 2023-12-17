@@ -18,3 +18,10 @@ where
         })
         .collect()
 }
+
+pub fn readlines(path: &str) -> Vec<String> {
+    let file = File::open(path).unwrap();
+    let reader = BufReader::new(file);
+
+    reader.lines().map(|line| line.unwrap()).collect()
+}
