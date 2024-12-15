@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+regex = "1.11.1"
 
 [[bin]]
 name="d1p1"
@@ -20,3 +21,7 @@ path="src/d2p1/main.rs"
 [[bin]]
 name="d2p2"
 path="src/d2p2/main.rs"
+
+[[bin]]
+name="d3p1"
+path="src/d3p1/main.rs"
