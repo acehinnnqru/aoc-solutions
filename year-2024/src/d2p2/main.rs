@@ -52,7 +52,7 @@ fn main() {
                 };
 
                 // remove elem in pos index - 2
-                return if index <= 2 {
+                if index <= 2 {
                     let newnums = [&nums[index - 1..]].concat();
                     let (safe, _) = is_safe(newnums.iter());
                     // println!("2 {:?}", newnums);
@@ -63,10 +63,10 @@ fn main() {
                     // println!("3 {:?}", newnums);
                     let (safe, _) = is_safe(newnums.iter());
                     safe
-                };
+                }
             } else {
                 panic!("")
-            };
+            }
         })
         .count();
 
