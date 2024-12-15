@@ -13,14 +13,14 @@ fn main() {
     // build heaps
     let count = lines
         .map_while(Result::ok)
-        .filter(|s| {
+        .map(|s| -> (String, bool) {
             let mut ns = s.split_whitespace();
             let first = ns.next().unwrap().parse::<i32>().unwrap();
             let second = ns.next().unwrap().parse::<i32>().unwrap();
 
             let diff = second - first;
             if diff == 0 || diff.abs() > 3 {
-                return false;
+                return (s, false);
             }
 
             let flag = diff > 0;
@@ -30,14 +30,21 @@ fn main() {
                 let cur = v.parse::<i32>().unwrap();
                 let diff = cur - pre;
                 if diff == 0 || diff.abs() > 3 || (diff > 0) != flag {
-                    return false;
+                    return (s, false);
                 }
 
                 pre = cur
             }
 
-            true
+            (s, true)
         })
+        .map(|(s, v)| -> bool {
+            if !v {
+                println!("{}", s);
+            }
+            v
+        })
+        .filter(|v| *v)
         .count();
 
     println!("{}", count);
