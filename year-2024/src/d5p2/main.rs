@@ -22,8 +22,6 @@ fn main() {
 
     let rule = build_rules(&mut lines);
 
-    // println!("{:?}", afters);
-
     let ret = lines
         .map_while(Result::ok)
         .filter_map(|s| -> Option<Vec<i32>> {
