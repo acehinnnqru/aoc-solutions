@@ -7,37 +7,41 @@ edition = "2021"
 regex = "1.11.1"
 
 [[bin]]
-name="d1p1"
-path="src/d1p1/main.rs"
+name = "d1p1"
+path = "src/d1p1/main.rs"
 
 [[bin]]
-name="d1p2"
-path="src/d1p2/main.rs"
+name = "d1p2"
+path = "src/d1p2/main.rs"
 
 [[bin]]
-name="d2p1"
-path="src/d2p1/main.rs"
+name = "d2p1"
+path = "src/d2p1/main.rs"
 
 [[bin]]
-name="d2p2"
-path="src/d2p2/main.rs"
+name = "d2p2"
+path = "src/d2p2/main.rs"
 
 [[bin]]
-name="d3p1"
-path="src/d3p1/main.rs"
+name = "d3p1"
+path = "src/d3p1/main.rs"
 
 [[bin]]
-name="d3p2"
-path="src/d3p2/main.rs"
+name = "d3p2"
+path = "src/d3p2/main.rs"
 
 [[bin]]
-name="d4p1"
-path="src/d4p1/main.rs"
+name = "d4p1"
+path = "src/d4p1/main.rs"
 
 [[bin]]
-name="d4p2"
-path="src/d4p2/main.rs"
+name = "d4p2"
+path = "src/d4p2/main.rs"
 
 [[bin]]
-name="d5p1"
-path="src/d5p1/main.rs"
+name = "d5p1"
+path = "src/d5p1/main.rs"
+
+[[bin]]
+name = "d5p2"
+path = "src/d5p2/main.rs"
