@@ -3,6 +3,7 @@ use std::{
     env,
     fs::File,
     io::{BufRead, BufReader},
+    vec,
 };
 
 use itertools::Itertools;
@@ -39,42 +40,41 @@ fn main() {
     let f = antinode_of(board.len(), board[0].len());
     antennas.iter().for_each(|(_, coords)| {
         coords.iter().permutations(2).for_each(|pairs| {
-            let left = pairs[0];
-            let right = pairs[1];
-
-            if let Some(pos) = f(left, right) {
-                if board[pos.0][pos.1] != '#' {
-                    board[pos.0][pos.1] = '#'
-                }
-            }
+            f(pairs[0], pairs[1])
+                .iter()
+                .for_each(|pos| board[pos.0][pos.1] = '#');
         });
     });
 
     let ret = board
         .iter()
-        .map(|v| v.iter().filter(|ch| **ch == '#').count())
+        .map(|v| -> usize { v.iter().filter(|ch| **ch == '#').count() })
         .sum::<usize>();
 
     println!("{ret}");
 }
 
-fn antinode_of(mmax: usize, nmax: usize) -> impl Fn(&Coord, &Coord) -> Option<Coord> {
-    println!("{mmax} {nmax}");
-    move |left, right| -> Option<Coord> {
-        let i = left.0 as i32 - 2 * (left.0 as i32 - right.0 as i32);
-        let j = left.1 as i32 - 2 * (left.1 as i32 - right.1 as i32);
+fn antinode_of(mmax: usize, nmax: usize) -> impl Fn(&Coord, &Coord) -> Vec<Coord> {
+    move |left, right| -> Vec<Coord> {
+        let mut ret = vec![];
+        let mut k = 1;
+        loop {
+            let i = left.0 as i32 - k * (left.0 as i32 - right.0 as i32);
+            let j = left.1 as i32 - k * (left.1 as i32 - right.1 as i32);
 
-        if i < 0 || j < 0 {
-            return None;
+            if i < 0 || j < 0 {
+                return ret;
+            }
+
+            let i = i as usize;
+            let j = j as usize;
+
+            if i >= mmax || j >= nmax {
+                return ret;
+            }
+
+            ret.push((i, j));
+            k += 1;
         }
-
-        let i = i as usize;
-        let j = j as usize;
-
-        if i >= mmax || j >= nmax {
-            return None;
-        }
-
-        Some((i, j))
     }
 }
